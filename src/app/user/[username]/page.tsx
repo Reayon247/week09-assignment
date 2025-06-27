@@ -4,7 +4,7 @@ import { postType } from "@/types/dataTypes";
 export default async function userPage({
   params,
 }: {
-  params: { username: string };
+  params: Promise<{ [username: string]: string | string[] | undefined }>;
 }) {
   const { username } = await params;
 

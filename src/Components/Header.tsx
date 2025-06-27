@@ -7,16 +7,19 @@ import {
   SignUpButton,
 } from "@clerk/nextjs";
 
-// import { auth } from "@clerk/nextjs/server";
-// import { db } from "@/utils/dbConnection";
+import { auth } from "@clerk/nextjs/server";
+import { db } from "@/utils/dbConnection";
 
 export default async function Header() {
-  // const { userId } = await auth();
+  const { userId } = await auth();
 
-  // const query = await db.query(" SELECT * FROM week9user WHERE userid = $1", [
-  //   userId,
-  // ]);
-  // const userData = query.rows[0];
+  let userData;
+  if (userId) {
+    const query = await db.query("SELECT * FROM week9user WHERE userid = $1", [
+      userId,
+    ]);
+    userData = query.rows[0];
+  }
 
   return (
     <>
@@ -25,7 +28,9 @@ export default async function Header() {
 
       <SignedIn>
         {/* these components will render when the user is signed-in */}
-        {/* <Link href={`/user/${userData.username}`}>Profile</Link> */}
+        <Link href={userData ? `/user/${userData.username}` : "/"}>
+          Profile
+        </Link>
         <UserButton />
       </SignedIn>
       <SignedOut>
