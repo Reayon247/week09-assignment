@@ -25,7 +25,7 @@ export default async function Header() {
 
       <SignedIn>
         {/* these components will render when the user is signed-in */}
-        <Link href={`/user/${userData.username}`}>Profile</Link>
+        {/* <Link href={`/user/${userData.username}`}>Profile</Link> */}
         <UserButton />
       </SignedIn>
       <SignedOut>
