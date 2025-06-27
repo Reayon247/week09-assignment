@@ -7,10 +7,10 @@ import { redirect } from "next/navigation";
 export default async function createUser({
   searchParams,
 }: {
-  searchParams: { error?: string };
+  searchParams: Promise<{ [error: string]: string | string[] | undefined }>;
 }) {
   const errorMessage =
-    searchParams?.error === "usernametaken"
+    (await searchParams).error === "usernametaken"
       ? "This Username is taken or you already have an account linked with your Clerk account"
       : null;
 
