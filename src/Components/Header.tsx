@@ -7,10 +7,13 @@ import {
   SignUpButton,
 } from "@clerk/nextjs";
 
-import { auth } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 
 export default async function Header() {
-  const { userId } = await auth();
+  const user = await currentUser();
+
+  // the question mark is so I dont get an error if the user is Null, it doesnt matter if its null cause the profile button wont be visible if they are not signed in
+  const username = user?.username;
 
   return (
     <>
@@ -19,7 +22,7 @@ export default async function Header() {
 
       <SignedIn>
         {/* these components will render when the user is signed-in */}
-        <Link href={`/user/${userId}`}>Profile</Link>
+        <Link href={`/user/${username}`}>Profile</Link>
         <UserButton />
       </SignedIn>
       <SignedOut>

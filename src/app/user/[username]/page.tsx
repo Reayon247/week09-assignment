@@ -1,7 +1,13 @@
-export default function userPage() {
+export default async function userPage({
+  params,
+}: {
+  params: Promise<{ username: string }>;
+}) {
+  const { username } = await params;
+
   return (
     <>
-      <h1>User Page</h1>
+      <h1>Welcome: {username}</h1>
     </>
   );
 }
