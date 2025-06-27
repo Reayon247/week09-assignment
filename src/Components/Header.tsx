@@ -7,16 +7,16 @@ import {
   SignUpButton,
 } from "@clerk/nextjs";
 
-import { auth } from "@clerk/nextjs/server";
-import { db } from "@/utils/dbConnection";
+// import { auth } from "@clerk/nextjs/server";
+// import { db } from "@/utils/dbConnection";
 
 export default async function Header() {
-  const { userId } = await auth();
+  // const { userId } = await auth();
 
-  const query = await db.query(" SELECT * FROM week9user WHERE userid = $1", [
-    userId,
-  ]);
-  const userData = query.rows[0];
+  // const query = await db.query(" SELECT * FROM week9user WHERE userid = $1", [
+  //   userId,
+  // ]);
+  // const userData = query.rows[0];
 
   return (
     <>
