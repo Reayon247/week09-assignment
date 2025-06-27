@@ -11,7 +11,7 @@ export default async function createUser({
 }) {
   const errorMessage =
     searchParams?.error === "usernametaken"
-      ? "This Username is taken or you already have an account linked with your clerk account"
+      ? "This Username is taken or you already have an account linked with your Clerk account"
       : null;
 
   const { userId } = await auth();
@@ -24,22 +24,22 @@ export default async function createUser({
   async function handleSubmit(formData: FormData) {
     "use server";
 
-    const username = formData.get("username");
-    const bio = formData.get("bio");
+    const username = formData.get("username") as string;
+    const bio = formData.get("bio") as string;
 
     try {
       await db.query(
         `INSERT INTO week9user (userid, username, bio, profile_pic) VALUES ($1, $2, $3, $4)`,
         [userId, username, bio, profilePic]
       );
-
-      revalidatePath(`/user/${username}`);
-      redirect(`/user/${username}`);
     } catch {
       //Here im just hoping there is no database error and its just the username taken hahaha
       //It looked quite complicated setting up a error catch with typescript
       redirect("/createuser?error=usernametaken");
     }
+
+    revalidatePath(`/user/${username}`);
+    redirect(`/user/${username}`);
   }
 
   return (
