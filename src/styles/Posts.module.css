@@ -37,3 +37,56 @@
   grid-column-end: 3;
   justify-items: center;
 }
+
+.nameanddrop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Dropdown ========================================================== */
+
+.Content {
+  min-width: 100px;
+  background-color: white;
+  border-radius: 6px;
+  padding: 5px;
+  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+}
+
+.Item {
+  font-size: 13px;
+  line-height: 1;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  height: 25px;
+  padding: 0 5px;
+  position: relative;
+  padding-left: 25px;
+  user-select: none;
+  outline: none;
+  color: black;
+  &[data-highlighted] {
+    background-color: var(--violet-9);
+    color: gray;
+  }
+}
+
+.trigger {
+  font-size: 13px;
+  border-radius: 5px;
+  border-top: 2px solid #f10000;
+  border-bottom: 2px solid #f10000;
+  padding: 4px;
+  cursor: pointer;
+  width: fit-content;
+  text-align: center;
+  align-self: center;
+  margin: 5px;
+  &:hover {
+    background-color: grey;
+    color: white;
+  }
+}
