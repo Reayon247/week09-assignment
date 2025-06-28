@@ -1,5 +1,6 @@
 import { db } from "@/utils/dbConnection";
 import { postType } from "@/types/dataTypes";
+import styles from "@/styles/Posts.module.css";
 
 export default async function userPage({
   params,
@@ -27,15 +28,15 @@ export default async function userPage({
   const posts = postQuery.rows;
 
   return (
-    <>
-      <h1>{profileData.username}&apos;s profile!</h1>
-      <h2>Profile Bio:</h2>
-      <p>{profileData.bio}</p>
-      <h2>User posts</h2>
-      <div>
+    <main>
+      <h1 className={styles.title}>{profileData.username}&apos;s profile!</h1>
+      <h2 className={styles.biotitle}>Profile Bio:</h2>
+      <p className={styles.bio}>{profileData.bio}</p>
+      <h2 className={styles.title}>User posts</h2>
+      <div className={styles.container}>
         {posts.map((post: postType) => {
           return (
-            <div key={post.id}>
+            <div key={post.id} className={styles.postcon}>
               <h2>{post.username}:</h2>
               <p>{post.post}</p>
               <p>{post.dislikes}</p>
@@ -44,6 +45,6 @@ export default async function userPage({
           );
         })}
       </div>
-    </>
+    </main>
   );
 }

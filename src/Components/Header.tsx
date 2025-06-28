@@ -6,6 +6,7 @@ import {
   SignInButton,
   SignUpButton,
 } from "@clerk/nextjs";
+import styles from "@/styles/Header.module.css";
 
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/utils/dbConnection";
@@ -22,22 +23,33 @@ export default async function Header() {
   }
 
   return (
-    <>
-      <h1>I Hate Your Opinion</h1>
-      <Link href={"/"}>Posts</Link>
-
-      <SignedIn>
-        {/* these components will render when the user is signed-in */}
-        <Link href={userData ? `/user/${userData.username}` : "/"}>
-          Profile
+    <header className={styles.header}>
+      <h1 className={styles.title}>I Hate Your Opinion</h1>
+      <nav className={styles.nav}>
+        <Link href={"/"} className={styles.link}>
+          Posts
         </Link>
-        <UserButton />
-      </SignedIn>
-      <SignedOut>
-        {/* these components will render when the user is signed-out */}
-        <SignInButton />
-        <SignUpButton />
-      </SignedOut>
-    </>
+
+        <SignedIn>
+          {/* these components will render when the user is signed-in */}
+          <Link
+            href={userData ? `/user/${userData.username}` : "/"}
+            className={styles.link}
+          >
+            Profile
+          </Link>
+          <UserButton />
+        </SignedIn>
+        <SignedOut>
+          {/* these components will render when the user is signed-out */}
+          <SignInButton>
+            <button className={styles.link}>Sign In</button>
+          </SignInButton>
+          <SignUpButton>
+            <button className={styles.link}>Sign up</button>
+          </SignUpButton>
+        </SignedOut>
+      </nav>
+    </header>
   );
 }

@@ -1,6 +1,7 @@
 import { db } from "@/utils/dbConnection";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
+import styles from "@/styles/PostForm.module.css";
 
 export default async function PostForm() {
   const { userId } = await auth();
@@ -40,12 +41,16 @@ export default async function PostForm() {
   }
 
   return (
-    <>
-      <form action={handleSubmit}>
-        <label htmlFor="post">Enter your opinion</label>
-        <input type="text" name="post" required />
-        <button type="submit">Post</button>
+    <div className={styles.form}>
+      <form action={handleSubmit} className={styles.formcon}>
+        <label className={styles.label} htmlFor="post">
+          Enter your opinion
+        </label>
+        <input className={styles.input} type="text" name="post" required />
+        <button className={styles.submit} type="submit">
+          Post
+        </button>
       </form>
-    </>
+    </div>
   );
 }
