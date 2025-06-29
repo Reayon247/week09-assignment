@@ -45,7 +45,7 @@
   border-bottom: 2px solid #f10000;
   padding: 4px;
   cursor: pointer;
-  width: 50px;
+  width: fit-content;
   text-align: center;
   align-self: center;
   margin: 5px;

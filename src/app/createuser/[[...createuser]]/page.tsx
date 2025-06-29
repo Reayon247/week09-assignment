@@ -3,6 +3,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { db } from "@/utils/dbConnection";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import styles from "@/styles/PostForm.module.css";
 
 export default async function createUser({
   searchParams,
@@ -43,17 +44,32 @@ export default async function createUser({
   }
 
   return (
-    <>
-      <h1>This is your profile creation page for this specific site</h1>
-      <form action={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input type="text" name="username" required />
-        {/* This renders the error message if it has the error from the search params */}
-        {errorMessage && <p>{errorMessage}</p>}
-        <label htmlFor="bio">Short Bio</label>
-        <input type="text" name="bio" />
-        <button type="submit">Create Account</button>
-      </form>
-    </>
+    <main>
+      <h1 className={styles.title}>
+        This is your profile creation page for this specific site
+      </h1>
+      <div className={styles.form}>
+        <form action={handleSubmit} className={styles.formcon}>
+          <label htmlFor="username" className={styles.label}>
+            Username:
+          </label>
+          <input
+            className={styles.input}
+            type="text"
+            name="username"
+            required
+          />
+          {/* This renders the error message if it has the error from the search params */}
+          {errorMessage && <p>{errorMessage}</p>}
+          <label htmlFor="bio" className={styles.label}>
+            Short Bio
+          </label>
+          <input className={styles.input} type="text" name="bio" />
+          <button className={styles.submit} type="submit">
+            Create Account
+          </button>
+        </form>
+      </div>
+    </main>
   );
 }
