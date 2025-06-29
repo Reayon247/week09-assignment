@@ -71,6 +71,7 @@
   &[data-highlighted] {
     background-color: var(--violet-9);
     color: gray;
+    cursor: pointer;
   }
 }
 
