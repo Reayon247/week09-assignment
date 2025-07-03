@@ -30,7 +30,7 @@ export default async function Posts() {
           <div key={post.id} className={styles.postcon}>
             <div className={styles.nameanddrop}>
               <Link href={`/user/${post.username}`}>{post.username}:</Link>
-              {currentUsername.username === post.username && (
+              {currentUsername?.username === post.username && (
                 <DropdownMenu.Root>
                   <DropdownMenu.Trigger className={styles.trigger}>
                     Settings
